@@ -64,11 +64,36 @@ public class Cella
         else if (noveny == this.Noveny)
         {
             this.egyedszam += egyedSzam;
+            if (this.egyedszam > noveny.OptimalisSuruseg)
+            {
+                this.noveny.EgeszsegiAllapot -= 2;
+            }
             return true;
         }
         else
         {
             return false;
         }
+    }
+
+    public void Noveles(int egyedSzam)
+    {
+        this.Beultet(this.Noveny, egyedSzam);
+    }
+
+    public void Csokkentes(int egyedSzam)
+    {
+        this.egyedszam -= egyedSzam;
+
+        if (this.egyedszam <= 0)
+        {
+            this.Urit();
+        }
+    }
+
+    public void Urit()
+    {
+        this.egyedszam = 0;
+        this.noveny = null;
     }
 }
